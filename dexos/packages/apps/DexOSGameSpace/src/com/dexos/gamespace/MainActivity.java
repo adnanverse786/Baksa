@@ -4,34 +4,24 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        LinearLayout root = new LinearLayout(this);
-        root.setOrientation(LinearLayout.VERTICAL);
-        root.setPadding(48, 48, 48, 48);
+        TextView openGames = findViewById(R.id.open_games);
+        TextView enableBoost = findViewById(R.id.enable_boost);
 
-        TextView title = new TextView(this);
-        title.setText("DexOS Game Space");
-        title.setTextSize(24f);
+        openGames.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_APP_GAME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        });
 
-        TextView hint = new TextView(this);
-        hint.setText("Tap to open installed games from launcher list.");
-        hint.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_MAIN)
-                .addCategory(Intent.CATEGORY_APP_GAME)));
-
-        TextView perf = new TextView(this);
-        perf.setText("Enable high-performance mode");
-        perf.setOnClickListener(v -> Settings.System.putInt(getContentResolver(), "dexos_game_mode", 1));
-
-        root.addView(title);
-        root.addView(hint);
-        root.addView(perf);
-        setContentView(root);
+        enableBoost.setOnClickListener(v ->
+                Settings.System.putInt(getContentResolver(), "dexos_game_mode", 1));
     }
 }

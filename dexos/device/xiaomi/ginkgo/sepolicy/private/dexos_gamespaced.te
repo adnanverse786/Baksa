@@ -1,0 +1,8 @@
+type dexos_gamespaced, domain;
+type dexos_gamespaced_exec, exec_type, system_file_type, file_type;
+
+init_daemon_domain(dexos_gamespaced)
+
+allow dexos_gamespaced system_server:unix_stream_socket connectto;
+allow dexos_gamespaced surfaceflinger_service:service_manager find;
+allow dexos_gamespaced inputflinger_service:service_manager find;

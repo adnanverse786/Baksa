@@ -1,49 +1,70 @@
-# DexOS (Android 11) for Redmi Note 8 (ginkgo) — Minimal Gaming ROM Blueprint
+# DexOS (Android 11) for Redmi Note 8 (ginkgo) — Optimized Minimal ROM Blueprint
 
-This repository provides a compact, build-ready skeleton for a custom ROM called **DexOS** designed to be lightweight and gaming-focused.
+DexOS is designed to stay lean while improving gaming consistency (frame pacing, touch latency, memory pressure behavior).
 
-## Goals
-- Android 11 base
-- Minimal UI and bloat
-- Efficient RAM and LMK tuning
-- Core GApps only
-- Quick shutter capture support
-- Direct Game Space launcher app
-- Simple custom boot animation
+## What was improved in this revision
+- Split config into reusable layers (`packages.mk` + `gaming-props.mk`) to avoid monolithic tuning and make per-device optimization easier.
+- Added explicit lunch targets (`AndroidProducts.mk`) and board optimization toggles (`BoardConfigDexOS.mk`).
+- Added device-level `system.prop`, `fstab.qcom`, and SELinux policy stubs for clean bring-up.
+- Reworked Game Space app into resource-based layout for maintainability.
+- Added a boot animation frame generator script for simple branded animation.
 
-## Critical files/components to include in a complete ROM
+## Critical partition/images required for Redmi Note 8 ROM delivery
 
-### Boot chain and recovery
-1. `boot.img` — kernel + ramdisk for normal boot.
-2. `vendor_boot.img` (if board config requires split boot on your tree).
-3. `dtbo.img` — device tree blob overlays.
-4. `vbmeta.img` / `vbmeta_system.img` / `vbmeta_vendor.img` — AVB metadata.
-5. `recovery.img` — recovery environment (or recovery-in-boot on A/B layouts).
-6. `abl`, `xbl`, `xbl_config`, `tz`, `hyp`, `modem`, `dsp` firmware images (from matching MIUI base).
+### Boot + verified boot + firmware
+1. `boot.img`
+2. `vendor_boot.img` (if split-boot setup is enabled)
+3. `dtbo.img`
+4. `vbmeta.img`
+5. `vbmeta_system.img`
+6. `vbmeta_vendor.img`
+7. `recovery.img`
+8. Firmware chain from matching MIUI base (`abl`, `xbl`, `xbl_config`, `tz`, `hyp`, `modem`, `dsp`)
 
-### Main Android partitions
-7. `system.img` — framework, system apps, init overlays.
-8. `system_ext.img` — OEM extensions and privileged add-ons.
-9. `product.img` — product apps/configs (including bootanimation placement if desired).
-10. `vendor.img` — HALs, proprietary libs, sepolicy bits.
-11. `odm.img` (if used by your device tree/vendor setup).
+### Android dynamic partitions
+9. `system.img`
+10. `system_ext.img`
+11. `product.img`
+12. `vendor.img`
+13. `odm.img`
+14. `super.img` metadata consistency (group + logical partition map)
 
-### Runtime and metadata
-12. `userdata` fstab/encryption config (`fstab.qcom`, init/fde/fbe props).
-13. SELinux policies (`system/sepolicy`, `vendor_sepolicy.cil` integration).
-14. Kernel config/defconfig (`arch/arm64/configs/*ginkgo*_defconfig`).
-15. OTA metadata (`META-INF/com/android/metadata`, payload properties).
+### Runtime security + OTA metadata
+15. `fstab.qcom` and encryption flags (FBE/ICE)
+16. SELinux policies (platform + vendor policy merge)
+17. Kernel defconfig and modules list
+18. OTA metadata (`payload.bin`, `care_map.pb`, `metadata`)
 
-## Files in this DexOS skeleton
-- `dexos/device/xiaomi/ginkgo/dexos_ginkgo.mk`: Product definition with minimal package set and gaming properties.
-- `dexos/vendor/dexos/config/common.mk`: Shared DexOS defaults, RAM tuning, copy rules.
-- `dexos/system/etc/init/init.dexos.rc`: Init actions for governor hints, quick shutter, gamespace daemon.
-- `dexos/system/bin/dexos_gamespace_service.sh`: Service script to register a Game Space shortcut.
-- `dexos/packages/apps/DexOSGameSpace/*`: Lightweight game hub app.
-- `dexos/bootanimation/desc.txt`: Simple boot animation playback descriptor.
+## DexOS file map (important)
 
-## Integration notes
-- Add `dexos_ginkgo.mk` to your lunch combos (`AndroidProducts.mk`).
-- Ensure proprietary blobs and kernel source match Redmi Note 8 Android 11 vendor base.
-- Verify SELinux labels for added service/script files.
-- Use only core GApps (`GmsCore`, `GoogleServicesFramework`, `Phonesky`) to stay lean.
+### Product / Board
+- `dexos/device/xiaomi/ginkgo/AndroidProducts.mk` — lunch combos.
+- `dexos/device/xiaomi/ginkgo/dexos_ginkgo.mk` — device product and tuning properties.
+- `dexos/device/xiaomi/ginkgo/BoardConfigDexOS.mk` — dynamic partition + dexpreopt + AVB flags.
+- `dexos/device/xiaomi/ginkgo/system.prop` — performance/system properties.
+- `dexos/device/xiaomi/ginkgo/rootdir/etc/fstab.qcom` — mount and encryption baseline.
+
+### Security policy
+- `dexos/device/xiaomi/ginkgo/sepolicy/private/dexos_gamespaced.te`
+- `dexos/device/xiaomi/ginkgo/sepolicy/private/file_contexts`
+
+### Vendor config
+- `dexos/vendor/dexos/config/common.mk`
+- `dexos/vendor/dexos/config/packages.mk`
+- `dexos/vendor/dexos/config/gaming-props.mk`
+
+### Runtime features
+- `dexos/system/etc/init/init.dexos.rc` — quick capture + Game Space service + VM hints.
+- `dexos/system/bin/dexos_gamespace_service.sh` — direct shortcut registration for Game Space.
+
+### App + UX
+- `dexos/packages/apps/DexOSGameSpace/*` — minimal game hub app.
+- `dexos/bootanimation/desc.txt` — animation timing.
+- `dexos/tools/generate_bootanimation_frames.py` — generate simple DexOS animation frames.
+
+## Integration steps (minimal)
+1. Hook `AndroidProducts.mk` into your `device/xiaomi/ginkgo` tree.
+2. Include `vendor/dexos/config/common.mk` from your product makefile.
+3. Merge SELinux policy and verify labels for custom service script.
+4. Generate boot animation frames and package into `bootanimation.zip` for `product/media`.
+5. Keep only core GApps (`GmsCore`, `GoogleServicesFramework`, `Phonesky`) for low overhead.

@@ -1,0 +1,7 @@
+# Minimal fstab sample for DexOS bring-up (adjust block devices to your tree)
+/dev/block/bootdevice/by-name/system    /system      ext4 ro,barrier=1 wait,logical,first_stage_mount
+/dev/block/bootdevice/by-name/system_ext /system_ext ext4 ro,barrier=1 wait,logical,first_stage_mount
+/dev/block/bootdevice/by-name/product   /product     ext4 ro,barrier=1 wait,logical,first_stage_mount
+/dev/block/bootdevice/by-name/vendor    /vendor      ext4 ro,barrier=1 wait,logical,first_stage_mount
+/dev/block/bootdevice/by-name/odm       /odm         ext4 ro,barrier=1 wait,logical,first_stage_mount
+/dev/block/bootdevice/by-name/userdata  /data        f2fs noatime,nosuid,nodev,discard,reserve_root=32768 latemount,wait,check,quota,formattable,fileencryption=ice

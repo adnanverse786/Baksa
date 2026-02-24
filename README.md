@@ -1,5 +1,11 @@
-# Baksa — DexOS ROM Skeleton
+# Baksa — DexOS ROM Skeleton (Android 11 / Redmi Note 8)
 
-This repo now contains a minimal Android 11 custom ROM blueprint for **Redmi Note 8 (ginkgo)** called **DexOS**.
+This repository contains an expanded, performance-focused DexOS ROM blueprint:
+- lightweight package set + core GApps
+- gaming and memory optimization properties
+- quick-capture shutter wiring
+- direct Game Space app/service
+- boot animation descriptor + frame generator script
 
-See: `docs/DexOS_ROM_BLUEPRINT.md`
+See full layout and critical partition checklist in:
+- `docs/DexOS_ROM_BLUEPRINT.md`
