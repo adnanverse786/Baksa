@@ -1,0 +1,15 @@
+# DexOS performance defaults
+ro.config.low_ram=false
+ro.vendor.qti.sys.fw.bservice_enable=true
+persist.vendor.powerhint.enable=1
+persist.sys.zram_enabled=1
+persist.sys.zram_size=2147483648
+
+# Touch/input responsiveness
+ro.input.resampling=1
+persist.sys.input_boost=1
+
+# SurfaceFlinger gaming smoothness
+ro.surface_flinger.use_context_priority=true
+ro.surface_flinger.enable_frame_rate_override=false
+debug.hwui.renderer=skiagl

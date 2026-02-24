@@ -1,0 +1,27 @@
+on post-fs-data
+    # CPU/GPU hints for stable gaming latency
+    write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor schedutil
+    write /sys/devices/system/cpu/cpufreq/policy4/scaling_governor schedutil
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
+
+    # Better app launch and background reclaim behavior
+    write /proc/sys/vm/swappiness 90
+    write /proc/sys/vm/vfs_cache_pressure 110
+
+    # Prioritize foreground app and input responsiveness
+    setprop persist.sys.dexos.touch_boost 1
+    setprop persist.sys.dexos.fg_boost 1
+
+on property:persist.dexos.camera.quick_capture=true
+    # Direct shutter/quick-capture bridge
+    setprop persist.camera.quick_launch 1
+
+on property:persist.dexos.gamespace.enabled=true
+    start dexos_gamespaced
+
+service dexos_gamespaced /system/bin/sh /system/bin/dexos_gamespace_service.sh
+    class main
+    user system
+    group system graphics input
+    seclabel u:r:dexos_gamespaced:s0
+    oneshot
