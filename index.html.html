@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Minecraft Guide by MSS</title>
+    <meta name="google-site-verification" content="KNg8U-eF2qowQd9qckjxN2FQuBPT7ftKE_gHmEqvbcY" />
+</head>
+<body>
+    <!-- Welcome Page Overlay -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-container">
+            <div class="welcome-header">
+                <h1 class="welcome-title">⛏️ MINECRAFT GUIDE</h1>
+                <p class="welcome-subtitle">Welcome to Your Ultimate Gaming Hub</p>
+            </div>
+            
+            <div class="welcome-content">
+                <div class="welcome-card">
+                    <span class="welcome-icon">🎮</span>
+                    <h3>Master Minecraft</h3>
+                    <p>Learn survival tips, crafting recipes, and pro strategies</p>
+                </div>
+                
+                <div class="welcome-card">
+                    <span class="welcome-icon">📚</span>
+                    <h3>Comprehensive Guide</h3>
+                    <p>Explore mobs, biomes, and everything you need to know</p>
+                </div>
+                
+                <div class="welcome-card">
+                    <span class="welcome-icon">🌟</span>
+                    <h3>Daily Tips</h3>
+                    <p>Get random tips each time you visit this website</p>
+                </div>
+            </div>
+            
+            <button class="welcome-btn" onclick="closeWelcome()">Enter Guide →</button>
+            
+            <p class="welcome-footer">By MSS • Best Gaming Resource</p>
+        </div>
+    </div>
+    
+    <div class="layout-wrapper">
+        <!-- Left Sidebar - Quick Reference -->
+        <div class="sidebar sidebar-left">
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">⚡ Quick Stats</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Health</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 100%;">20</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Hunger</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 100%;">10</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Experience</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 65%;">Lvl 5</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">🎯 Featured Tip</h3>
+                <p class="tip-text" id="randomTip">Always carry torches! They light up dark areas and prevent mob spawning.</p>
+            </div>
+        </div>
+        
+        <!-- Main Container -->
+        <div class="container">
+            <div class="glass-card main-card">
+            <div class="header">
+                <img src="channels4_profile.jpg" alt="Logo" class="logo">
+                <div class="header-text">
+                    <h1>⛏️ THE ULTIMATE MINECRAFT GUIDE</h1>
+                    <p class="subtitle">Master the blocky world from beginner to expert</p>
+                </div>
+            </div>
+            
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="showTab('guide')">📖 Guide</button>
+                <button class="tab-btn" onclick="showTab('crafting')">🔨 Crafting</button>
+                <button class="tab-btn" onclick="showTab('mobs')">👹 Mobs</button>
+                <button class="tab-btn" onclick="showTab('biomes')">🌍 Biomes</button>
+                <button class="tab-btn" onclick="showTab('tips')">💡 Tips</button>
+                <button class="tab-btn" onclick="showTab('legendary')">🚀 Legendary</button>
+            </div>
+            
+            <div class="content">
+                <!-- GUIDE TAB -->
+                <div id="guide" class="tab-content active">
+                    <div class="section">
+                        <h3>🎮 GETTING STARTED</h3>
+                        <p>Welcome to Minecraft! This sandbox game allows unlimited creativity. Choose between Survival Mode for challenges or Creative Mode for pure building.</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>⚔️ SURVIVAL MODE</h3>
+                        <p><strong>Difficulty Levels:</strong> Peaceful, Easy, Normal, Hard</p>
+                        <ul>
+                            <li><strong>Peaceful:</strong> No mobs spawn, hunger doesn't deplete</li>
+                            <li><strong>Easy:</strong> Mobs spawn, lower damage taken</li>
+                            <li><strong>Normal:</strong> Balanced challenge and fun</li>
+                            <li><strong>Hard:</strong> Ultimate challenge, mobs deal massive damage</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>🏗️ CREATIVE MODE</h3>
+                        <p>Unlimited resources, instant building, flying, and no mobs. Perfect for building massive structures without resource gathering.</p>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>🌙 FIRST NIGHT SURVIVAL</h3>
+                        <ul>
+                            <li>Punch trees (hold left-click) to get wood blocks</li>
+                            <li>Open inventory (E key) and craft a crafting table</li>
+                            <li>Place crafting table and craft wooden planks into sticks</li>
+                            <li>Create wooden pickaxe to mine stone</li>
+                            <li>Build a basic shelter before mobs spawn at night</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- CRAFTING TAB -->
+                <div id="crafting" class="tab-content">
+                    <div class="section">
+                        <h3>🔨 ESSENTIAL CRAFTING RECIPES</h3>
+                        <p><strong>2x2 Crafting Grid (Inventory):</strong></p>
+                    </div>
+                    
+                    <div class="recipe-grid">
+                        <div class="recipe">
+                            <div class="recipe-title">🪵 Planks from Logs</div>
+                            <div class="recipe-input">1 Log</div>
+                            <div class="recipe-arrow">→</div>
+                            <div class="recipe-output">4 Planks</div>
+                        </div>
+                        
+                        <div class="recipe">
+                            <div class="recipe-title">🪨 Crafting Table</div>
+                            <div class="recipe-input">4 Planks</div>
+                            <div class="recipe-arrow">→</div>
+                            <div class="recipe-output">1 Table</div>
+                        </div>
+                        
+                        <div class="recipe">
+                            <div class="recipe-title">⚒️ Wooden Pickaxe</div>
+                            <div class="recipe-input">3 Planks + 2 Sticks</div>
+                            <div class="recipe-arrow">→</div>
+                            <div class="recipe-output">1 Pickaxe</div>
+                        </div>
+                        
+                        <div class="recipe">
+                            <div class="recipe-title">🛏️ Bed</div>
+                            <div class="recipe-input">3 Wool + 3 Planks</div>
+                            <div class="recipe-arrow">→</div>
+                            <div class="recipe-output">1 Bed</div>
+                        </div>
+                        
+                        <div class="recipe">
+                            <div class="recipe-title">🔥 Furnace</div>
+                            <div class="recipe-input">8 Cobblestone</div>
+                            <div class="recipe-arrow">→</div>
+                            <div class="recipe-output">1 Furnace</div>
+                        </div>
+                        
+                        <div class="recipe">
+                            <div class="recipe-title">⚔️ Iron Sword</div>
+                            <div class="recipe-input">2 Iron Ingots + 1 Stick</div>
+                            <div class="recipe-arrow">→</div>
+                            <div class="recipe-output">1 Sword</div>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>⛏️ TOOL PROGRESSION</h3>
+                        <p><strong>Upgrade Path:</strong> Wood → Stone → Iron → Diamond → Netherite</p>
+                        <p>Each tier mines faster and lasts longer. Diamond tools are nearly unbreakable!</p>
+                    </div>
+                </div>
+                
+                <!-- MOBS TAB -->
+                <div id="mobs" class="tab-content">
+                    <div class="section">
+                        <h3>👹 HOSTILE MOBS (Spawn at Night)</h3>
+                        <ul>
+                            <li><strong>🧟 Zombie:</strong> Slow, weak, drops rotten flesh</li>
+                            <li><strong>🏹 Skeleton:</strong> Shoots arrows, spawns in dark areas</li>
+                            <li><strong>☠️ Creeper:</strong> EXPLODES when near! Most dangerous</li>
+                            <li><strong>🕷️ Spider:</strong> Fast, climbs walls, spawns in dark</li>
+                            <li><strong>🔥 Blaze:</strong> Floats, shoots fireballs, found in Nether</li>
+                            <li><strong>👿 Enderman:</strong> Tall, teleports, attacks when looked at</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>🐑 PASSIVE MOBS (Friendly)</h3>
+                        <ul>
+                            <li><strong>🐑 Sheep:</strong> Drop wool for beds, respawn wool when grass grows</li>
+                            <li><strong>🐷 Pig:</strong> Drop pork chops, can ride with saddle</li>
+                            <li><strong>🐄 Cow:</strong> Drop beef and leather armor</li>
+                            <li><strong>🏃 Villager:</strong> Trade items, build farms nearby</li>
+                            <li><strong>🐎 Horse:</strong> Rideable, breed for better stats</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>🐉 BOSS MOBS</h3>
+                        <ul>
+                            <li><strong>🐲 Ender Dragon:</strong> End dimension boss, defeat to beat the game</li>
+                            <li><strong>👑 Wither:</strong> Nether boss, extremely dangerous, drops rare items</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- BIOMES TAB -->
+                <div id="biomes" class="tab-content">
+                    <div class="section">
+                        <h3>🌍 MINECRAFT BIOMES</h3>
+                    </div>
+                    
+                    <div class="biome-grid">
+                        <div class="biome">
+                            <h4>🏜️ Desert</h4>
+                            <p>Hot, no rain, temples with loot, very little water</p>
+                        </div>
+                        
+                        <div class="biome">
+                            <h4>🌲 Forest</h4>
+                            <p>Lots of trees, animals, lots of wood to gather</p>
+                        </div>
+                        
+                        <div class="biome">
+                            <h4>❄️ Snowy</h4>
+                            <p>Ice, snow, polar bears, igloos with treasures</p>
+                        </div>
+                        
+                        <div class="biome">
+                            <h4>🏔️ Mountains</h4>
+                            <p>High altitude, emerald ore, eagle views, villages</p>
+                        </div>
+                        
+                        <div class="biome">
+                            <h4>🏞️ Plains</h4>
+                            <p>Flat, lots of animals, great for early bases</p>
+                        </div>
+                        
+                        <div class="biome">
+                            <h4>🌊 Ocean</h4>
+                            <p>Deep water, temples, dolphins, shipwrecks</p>
+                        </div>
+                        
+                        <div class="biome">
+                            <h4>🏕️ Jungle</h4>
+                            <p>Dense trees, temples, parrots, hard to navigate</p>
+                        </div>
+                        
+                        <div class="biome">
+                            <h4>🔴 Nether</h4>
+                            <p>Lava, ghasts, netherite ore, dimly lit dimension</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TIPS TAB -->
+                <div id="tips" class="tab-content">
+                    <div class="section">
+                        <h3>💡 PRO TIPS & STRATEGIES</h3>
+                    </div>
+                    
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <h4>🛏️ Always Have a Bed</h4>
+                            <p>Sleep to skip night, set spawn point, critically important for survival</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h4>💎 Find Diamonds</h4>
+                            <p>Mine at Y-level -59 to -64 for best chance. Use stone pickaxe or better</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h4>🔥 Keep Food Nearby</h4>
+                            <p>Hunt animals early, cook meat in furnace, always maintain food supply</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h4>🌙 Light Up Everywhere</h4>
+                            <p>Torches prevent mob spawning. Place them everywhere you build</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h4>📦 Organize Storage</h4>
+                            <p>Use labeled chests, create storage systems with chest sorting</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h4>🗺️ Make Signs & Maps</h4>
+                            <p>Mark important locations to avoid getting lost</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h4>⚒️ Build Farms</h4>
+                            <p>Create mob farms, crop farms, and fishing setups for infinite resources</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h4>🎒 Use Anvils</h4>
+                            <p>Repair tools and combine enchantments for powerful gear</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LEGENDARY TAB -->
+                <div id="legendary" class="tab-content">
+                    <div class="section">
+                        <h3>🚀 LEGENDARY FEATURES COMING SOON</h3>
+                        <p>Exciting new features are in development! Here's what we're working on:</p>
+                    </div>
+                    
+                    <div class="legendary-grid">
+                        <div class="legendary-card">
+                            <div class="legendary-header">
+                                <h4>🎬 Video Tutorials</h4>
+                                <span class="progress-percent">75%</span>
+                            </div>
+                            <p class="legendary-desc">Learn with step-by-step video guides for every aspect of Minecraft</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="legendary-card">
+                            <div class="legendary-header">
+                                <h4>🎧 Audio Guide</h4>
+                                <span class="progress-percent">50%</span>
+                            </div>
+                            <p class="legendary-desc">Listen to in-depth Minecraft strategies while playing</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="legendary-card">
+                            <div class="legendary-header">
+                                <h4>🗺️ Dynamic Map</h4>
+                                <span class="progress-percent">60%</span>
+                            </div>
+                            <p class="legendary-desc">Interactive 3D map showing all biomes and structures</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="legendary-card">
+                            <div class="legendary-header">
+                                <h4>🏆 Achievement Tracker</h4>
+                                <span class="progress-percent">80%</span>
+                            </div>
+                            <p class="legendary-desc">Track and complete achievements with rewards system</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="legendary-card">
+                            <div class="legendary-header">
+                                <h4>👥 Multiplayer Hub</h4>
+                                <span class="progress-percent">40%</span>
+                            </div>
+                            <p class="legendary-desc">Connect with other Minecraft players and join servers</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="legendary-card">
+                            <div class="legendary-header">
+                                <h4>🤖 AI Assistant</h4>
+                                <span class="progress-percent">30%</span>
+                            </div>
+                            <p class="legendary-desc">Ask AI anything about Minecraft and get instant answers</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>📢 Stay Tuned!</h3>
+                        <p>These legendary features are coming soon! Follow our community channels to get notified when each feature launches.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <p class="footer-text">🎮 Master Minecraft • Build • Survive • Explore • Create 🎮</p>
+                <div class="button-group">
+                    <a href="https://minecraft.net" target="_blank" class="btn btn-primary">Paid Minecraft</a>
+                    <a href="https://tlauncher.org/" target="_blank" class="btn btn-secondary">Free Minecraft</a>
+                    <a href="https://play.google.com/store/apps/details?id=git.artdeell.mojo&hl=en_IN" target="_blank" class="btn btn-secondary">Mobile Minecraft</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Sidebar - Community Hub -->
+        <div class="sidebar sidebar-right">
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">🌐 Community Hub</h3>
+                <div class="social-links">
+                    <a href="https://discord.com" target="_blank" class="social-btn discord">
+                        <span class="social-icon">💬</span>
+                        <span>Discord</span>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="social-btn youtube">
+                        <span class="social-icon">▶️</span>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-btn twitter">
+                        <span class="social-icon">𝕏</span>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="https://reddit.com/r/minecraft" target="_blank" class="social-btn reddit">
+                        <span class="social-icon">🔗</span>
+                        <span>Reddit</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">📊 Server Status</h3>
+                <div class="status-item">
+                    <div class="status-dot online"></div>
+                    <span class="status-text">Online</span>
+                </div>
+                <p class="status-info">1,234 players active</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Array of featured tips
+        const featuredTips = [
+            "🎯 Always carry torches! They light up dark areas and prevent mob spawning.",
+            "⚒️ Punching trees to get wood is the very first thing you should do.",
+            "🛏️ Always make a bed on your first night to set your spawn point.",
+            "🔥 Cook all your meat in a furnace for better nutrition.",
+            "💎 Mine diamonds at Y-level -59 to -64 for the best chance.",
+            "🌙 Sleep to skip the night and avoid hostile mobs.",
+            "📦 Create organized storage systems using labeled chests.",
+            "🗺️ Make signs to mark important locations like home and mines.",
+            "⛏️ Upgrade your tools: Wood → Stone → Iron → Diamond → Netherite.",
+            "🧟 Keep your distance from Creepers! They explode without a sound.",
+            "🏹 Skeletons are dangerous at range, build walls for protection.",
+            "🐑 Sheep drop wool which is essential for making beds.",
+            "🌾 Build a farm early to maintain your food supply.",
+            "🔦 Lava is useful for smelting and lighting but dangerous to navigate.",
+            "🌊 Water is your friend - use it to escape falls and lava.",
+            "🧱 Stone is one of the most important building materials.",
+            "🎪 Creative mode is perfect for practicing building without pressure.",
+            "🎮 Survival mode teaches you resource management and planning.",
+            "📊 Experience points help you enchant and repair tools.",
+            "💪 Full netherite armor with protection enchantments is nearly unbeatable.",
+            "🔗 Bookshelves increase enchantment table power.",
+            "🎁 Find villages and trade with villagers for rare items.",
+            "🌗 Nighttime is when most dangerous mobs spawn.",
+            "⚔️ Iron sword is the perfect balance between damage and durability.",
+            "🏠 Build your base near water and trees for easier resource gathering."
+        ];
+
+        // Load random tip when page opens
+        function loadRandomTip() {
+            const randomIndex = Math.floor(Math.random() * featuredTips.length);
+            const randomTip = featuredTips[randomIndex];
+            document.getElementById('randomTip').textContent = randomTip;
+        }
+
+        // Close welcome screen and show main content
+        function closeWelcome() {
+            const welcomeOverlay = document.getElementById('welcomeOverlay');
+            welcomeOverlay.classList.add('fade-out');
+            setTimeout(() => {
+                welcomeOverlay.style.display = 'none';
+            }, 600);
+        }
+
+        // Call functions when page loads
+        window.addEventListener('load', () => {
+            loadRandomTip();
+            // Show welcome page for 2 seconds, then auto-close
+            setTimeout(() => {
+                // User can click button to close earlier
+            }, 2000);
+        });
+        
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Activate clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
